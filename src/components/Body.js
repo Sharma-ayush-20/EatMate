@@ -12,7 +12,12 @@ const Body = () => {
     fetchData();
   }, []);
 
+  // to solve the cors issue without the browser extension we have to use the website corsproxy.io we solve the cors issue
+  // so to use this we have to append this line https://corsproxy.io/?Your-api by using this cors issue is resolved without
+  // using browser extension but now this not working
+
   const fetchData = async () => {
+
     let data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1090805&lng=72.8720171&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
