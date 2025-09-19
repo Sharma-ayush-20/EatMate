@@ -1,0 +1,143 @@
+body {
+    background-color: rgb(234, 230, 230);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .head{
+    background-color: #2d7aed;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo>img {
+    width: 150px;
+    border-radius: 30px;
+}
+
+.menu>ul {
+    display: flex;
+}
+
+.menu>ul>li {
+    padding: 20px;
+    list-style-type: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.res-container {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.res-card {
+    padding: 10px;
+    width: 200px;
+    /* height: 310px; */
+    margin: 20px;
+    /* border: 1px solid black; */
+}
+
+.res-card:hover {
+    border: 1px solid black;
+    box-shadow: rgb(57, 56, 56);
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in;
+}
+
+.search {
+    padding: 10px;
+    text-align: center;
+}
+
+.res-img {
+    width: 200px;
+    height: 110px;
+    background-size: cover;
+}
+
+.name {
+    color: rgb(255, 31, 53);
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.footer {
+    text-align: center;
+}
+
+.filter-btn {
+    cursor: pointer;
+    margin: 10px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #dfdbdb;
+    border-radius: 50%;
+    border-bottom-color: #ee5222;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.shimmer-container {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.shimmer-card {
+    width: 200px;
+    height: 310px;
+    background-color: #b0b0b0;
+    margin: 20px;
+    padding: 10px;
+}
+
+.search-input {
+    padding: 10px;
+    margin: 10px;
+}
+
+.search-btn {
+    padding: 8px 20px;
+    color: #ee5222;
+    background-color: #faf7f7;
+    font-size: medium;
+    cursor: pointer;
+    border-radius: 10px;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "eatmate",
+  "version": "1.0.0",
+  "description": "A Food Delivery App",
+  "license": "ISC",
+  "author": "Ayush Sharma",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "babel": "^5.8.38",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
