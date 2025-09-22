@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 body {
     background-color: rgb(234, 230, 230);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 /* .head{
@@ -82,11 +84,11 @@ body {
 }
 
 .loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
 }
 
 .loading {
@@ -140,4 +142,16 @@ body {
     font-size: medium;
     cursor: pointer;
     border-radius: 10px;
+}
+
+/* css for link tag of react-router-dom  */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover, a:focus, a:visited, a:active {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
 }
