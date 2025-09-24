@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import "./ResMenu.css";
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/constants";
+// import { MENU_URL } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 function RestaurantMenu() {
-  const [resInfo, setResInfo] = useState(null);
   const [firstTitleCard, setFirstTitleCard] = useState([]);
   const [secondTitleCard, setSecondTitleCard] = useState([]);
   const [thirdTitleCard, setThirdTitleCard] = useState([]);
   const { resid } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const resInfo = useRestaurantMenu(resid);
 
   useEffect(() => {
     if (resInfo) {
@@ -33,13 +31,6 @@ function RestaurantMenu() {
       setThirdTitleCard(thirdTitleCardData);
     }
   }, [resInfo]);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_URL + resid);
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json?.data);
-  };
 
   if (resInfo === null) {
     return <ShimmerUI />;

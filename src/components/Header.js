@@ -1,8 +1,10 @@
 import React from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
+  const onlineStatus = useOnlineStatus();
   return (
     <>
       <div className="head">
@@ -12,6 +14,14 @@ const Header = () => {
 
         <div className="menu">
           <ul>
+            <li>
+              <Link
+                to="/"
+                style={{ color: "black", textDecorationLine: "none" }}
+              >
+                {onlineStatus ? "Online" : "Offline"}
+              </Link>
+            </li>
             <li>
               <Link
                 to="/"

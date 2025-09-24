@@ -3,11 +3,14 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   let [listAllRestaurant, setListAllRestaurant] = useState([]); //original Copy of data for restaurant
   let [filteredRestaurant, setFilteredRestaurant] = useState([]); //filter restaurant by search
   let [searchText, setSearchText] = useState("");
+
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -43,6 +46,10 @@ const Body = () => {
 
       <ShimmerUI />
     );
+  }
+
+  if(onlineStatus === false){
+    return <h1>Oops!! Your internet is not connected.</h1>
   }
 
   return (
