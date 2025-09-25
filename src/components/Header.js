@@ -7,7 +7,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
   return (
     <>
-      <div className="head">
+      <div className="bg-red-100">
         <div className="logo">
           <img src={LOGO_URL} />
         </div>

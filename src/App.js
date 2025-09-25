@@ -15,7 +15,8 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Outlet /> {/* about and contact pages are inject in this outlet  */}
+      <Outlet /> {/* about and con
+      tact pages are inject in this outlet  */}
       <Footer />
     </div>
   );
