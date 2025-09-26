@@ -1,4 +1,4 @@
-.res-menu {
+/* .res-menu {
     max-width: 1500px;
     background: #ffffff;
     border-radius: 12px;
@@ -64,43 +64,22 @@
     color: #ff6d00;
     font-weight: 600;
 }
-
+ */
 
 /* deals  */
 
-.deals-h3 {
+/* .deals-h3 {
     font-size: 20px;
     font-weight: 800;
     color: #333;
     margin-bottom: 6px;
     text-align: center;
 }
+ */
 
-.deals {
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
-    padding: 6px;
-}
-
-.offer {
-    background: #ffffffea;
-    border: 1px solid #2b2b2b;
-    border-radius: 3px;
-    padding: 0px 12px;
-    /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); */
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.offer:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
 
 /* Offer container */
-.offer {
+/* .offer {
   background: #fff;
   border: 1px solid #f0f0f0;
   border-radius: 12px;
@@ -115,55 +94,55 @@
 .offer:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+} */
 
 /* Small offer tag */
-.offer h6 {
+/* .offer h6 {
   font-size: 11px;
   font-weight: 600;
   color: #ff6d00;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0;
-}
+} */
 
 /* Offer main header */
-.offer h5:first-of-type {
+/* .offer h5:first-of-type {
   font-size: 15px;
   font-weight: 600;
   color: #222;
   margin: 2px 0;
-}
+} */
 
 /* Offer description */
-.offer h5:last-of-type {
+/* .offer h5:last-of-type {
   font-size: 13px;
   font-weight: 400;
   color: #777;
   margin: 0;
-}
+} */
 
 /* menu  */
-.main-h1 {
+/* .main-h1 {
   text-align: center;          
   font-size: 23px;             
   font-weight: 800;        
   color: #333;                
   margin: 10px 0;            
-  font-family: cursive;
+  font-family: cursive; */
   /* background-color: rgb(255, 233, 221); */
-}
+/* } */
 
 /* recommended  */
 
-.recom {
-    margin-left: 80px;
+/* .recom {
+    margin-left: 80px; */
     /* background: #f8f5f5; */
-    padding: 10px;
+    /* padding: 10px;
     color: rgb(255, 113, 61);
-}
+} */
 
-.main-menu {
+/* .main-menu {
   margin: 20px 0;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
@@ -257,5 +236,5 @@
 
 .customisable {
   font-size: 11px;
-  color: #999;
-}
+  color: #999; */
+/* } */

@@ -6,6 +6,10 @@ body {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 /* .head{
     background-color: #2d7aed;
     color: white;
