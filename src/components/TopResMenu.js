@@ -1,4 +1,3 @@
-// TopResMenu.js
 import React from "react";
 import { IMAGE_URL } from "../utils/constants";
 

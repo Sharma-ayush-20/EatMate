@@ -34,7 +34,7 @@ const Body = () => {
 
     const json = await data.json();
 
-    // console.log(json);
+    console.log(json);
     // console.log(json?.data?.cards[0]?.card?.card);
 
     setListAllRestaurant(
@@ -72,8 +72,9 @@ const Body = () => {
   //   );
   // }
 
-
-  return listAllRestaurant.length === 0 ?  <ShimmerUI /> : (
+  return listAllRestaurant.length === 0 ? (
+    <ShimmerUI />
+  ) : (
     <div className="">
       <div className="flex flex-wrap gap-4 items-center justify-center mt-8">
         {/* Search Input */}
@@ -117,7 +118,7 @@ const Body = () => {
       </h2>
       <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-10 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
         {topFoods.map((food) => (
-          <Link key={food?.id} to={`restaurants/${food?.id}`}>
+          <Link key={food?.id} to={"/"}>
             <TopResMenu foodData={food} />
           </Link>
         ))}

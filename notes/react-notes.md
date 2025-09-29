@@ -88,3 +88,7 @@ Ye basically chunking + lazy loading ka combination hai.
 Kya hai: Bundles ko dynamically generate karna runtime ya build time pe based on usage.
 Kyun: Sirf jo code use ho raha hai, wahi bundle me include ho → performance best.
 Example: Webpack ya Vite automatically code splitting + dynamic bundling karte hain.
+
+<!-- Higher order components  -->
+
+React me Higher-Order Component (HOC) ek function hota hai jo ek component ko input ke roop me leta hai aur ek naya enhanced component return karta hai. Ye basically code reuse aur logic sharing ke liye use hota hai.
