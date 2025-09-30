@@ -1,9 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import { UserContext } from '../utils/UserContext'
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
+  const {userState, setUserState} = useContext(UserContext)
+
+  const handleLogin = () => {
+    if(userState === "Login"){
+      setUserState("Logout")
+    }else{
+      setUserState("Login")
+    }
+  }
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -40,6 +51,9 @@ const Header = () => {
           </li>
           <li className="px-3 py-2 rounded hover:text-orange-500 transition-colors cursor-pointer">
             Cart
+          </li>
+          <li onClick={handleLogin} className="px-5 py-2 w-25 text-center rounded hover:text-orange-500 bg-gray-400 transition-colors cursor-pointer">
+            {userState}
           </li>
         </ul>
       </div>

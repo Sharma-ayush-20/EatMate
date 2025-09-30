@@ -8,17 +8,20 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { UserContextProvider } from "./utils/UserContext";
 
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   return (
+    <UserContextProvider>
     <div className="app">
       <Header />
       <Outlet /> {/* about and con
       tact pages are inject in this outlet  */}
       <Footer />
     </div>
+    </UserContextProvider>
   );
 };
 
