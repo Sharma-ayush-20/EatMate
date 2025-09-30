@@ -1,12 +1,16 @@
 import { FaLinkedin, FaInstagram, FaFacebook, FaPinterest, FaTwitter } from "react-icons/fa";
+import { UserContext } from "../utils/UserContext";
+import { useContext } from "react";
 
 const Footer = () => {
   const currYear = new Date().getFullYear();
+  const { theme } = useContext(UserContext); 
 
   return (
-    <footer className="bg-gray-100 text-gray-700 mt-8">
+    <footer className={`${theme === "light" ? "bg-gray-100 text-gray-700" : "bg-gray-900 text-gray-200"} transition-colors duration-500 mt-1`}>
+      
       {/* Top Section: Download Apps */}
-      <div className="max-w-7xl mx-auto py-8 px-6 flex flex-col md:flex-row justify-between items-center border-b border-gray-300">
+      <div className="max-w-7xl mx-auto py-8 px-6 flex flex-col md:flex-row justify-between items-center border-b transition-colors duration-500 border-gray-300">
         <p className="text-lg font-semibold mb-4 md:mb-0">
           For better experience, download the eatmate app now
         </p>
@@ -21,7 +25,8 @@ const Footer = () => {
       </div>
 
       {/* Middle Section: Links */}
-      <div className="max-w-7xl mx-auto py-8 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 border-b border-gray-300">
+      <div className="max-w-7xl mx-auto py-8 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 border-b border-gray-300 transition-colors duration-500">
+        {/* Company */}
         <div>
           <h4 className="font-semibold mb-2">Company</h4>
           <ul className="space-y-1 text-sm">
@@ -39,6 +44,7 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Help & Support */}
         <div>
           <h4 className="font-semibold mb-2">Help & Support</h4>
           <ul className="space-y-1 text-sm">
@@ -48,6 +54,7 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Legal */}
         <div>
           <h4 className="font-semibold mb-2">Legal</h4>
           <ul className="space-y-1 text-sm">
@@ -59,6 +66,7 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Explore */}
         <div>
           <h4 className="font-semibold mb-2">Explore with eatmate</h4>
           <ul className="space-y-1 text-sm">
@@ -67,6 +75,7 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Available Cities */}
         <div>
           <h4 className="font-semibold mb-2">Available in:</h4>
           <ul className="space-y-1 text-sm">
@@ -81,17 +90,15 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Section: Social Links & Copyright */}
-      <div className="max-w-7xl mx-auto py-6 px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-gray-500">
-          © {currYear} eatmate Limited
-        </p>
-        <div className="flex gap-4 text-gray-600 text-xl">
-          <FaLinkedin className="hover:text-blue-700 cursor-pointer" />
-          <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-          <FaFacebook className="hover:text-blue-600 cursor-pointer" />
-          <FaPinterest className="hover:text-red-500 cursor-pointer" />
-          <FaTwitter className="hover:text-blue-400 cursor-pointer" />
+      {/* Bottom Section */}
+      <div className="max-w-7xl mx-auto py-6 px-6 flex flex-col md:flex-row justify-between items-center gap-4 transition-colors duration-500">
+        <p className="text-sm text-gray-500">{`© ${currYear} eatmate Limited`}</p>
+        <div className="flex gap-4 text-xl">
+          <FaLinkedin className={`hover:text-blue-700 cursor-pointer transition-colors ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`} />
+          <FaInstagram className={`hover:text-pink-500 cursor-pointer transition-colors ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`} />
+          <FaFacebook className={`hover:text-blue-600 cursor-pointer transition-colors ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`} />
+          <FaPinterest className={`hover:text-red-500 cursor-pointer transition-colors ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`} />
+          <FaTwitter className={`hover:text-blue-400 cursor-pointer transition-colors ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`} />
         </div>
       </div>
     </footer>

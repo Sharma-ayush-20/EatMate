@@ -2,22 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext } from "react";
-import { UserContext } from '../utils/UserContext'
+import { UserContext } from "../utils/UserContext";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
-  const {userState, setUserState} = useContext(UserContext)
+  const { userState, setUserState, theme, toggleTheme } =
+    useContext(UserContext);
 
   const handleLogin = () => {
-    if(userState === "Login"){
-      setUserState("Logout")
-    }else{
-      setUserState("Login")
+    if (userState === "Login") {
+      setUserState("Logout");
+    } else {
+      setUserState("Login");
     }
-  }
+  };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header
+      className={`shadow-md sticky top-0 z-50 transition-all duration-500
+    ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"}`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-around py-4 px-6">
         {/* Logo */}
         <h1 className="text-3xl font-bold text-orange-500 relative cursor-pointer group">
@@ -26,7 +30,12 @@ const Header = () => {
         </h1>
 
         {/* Navigation */}
-        <ul className="flex items-center gap-6 text-gray-700 font-medium text-xl">
+        <ul
+          className={`
+    flex items-center gap-6 font-medium text-xl transition-all duration-500
+    ${theme === "light" ? "text-gray-700" : "text-gray-200"}
+  `}
+        >
           <li className="px-3">
             <span
               className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -38,23 +47,52 @@ const Header = () => {
               {onlineStatus ? "🟢 Online" : "🔴 Offline"}
             </span>
           </li>
+
           <li className="px-3 py-2 rounded hover:text-orange-500 transition-colors">
             <Link to="/" className="w-full h-full block">
               Home
             </Link>
           </li>
+
           <li className="px-3 py-2 rounded hover:text-orange-500 transition-colors">
             <Link to="/about">About us</Link>
           </li>
+
           <li className="px-3 py-2 rounded hover:text-orange-500 transition-colors">
             <Link to="/contact">Contact us</Link>
           </li>
+
           <li className="px-3 py-2 rounded hover:text-orange-500 transition-colors cursor-pointer">
             Cart
           </li>
-          <li onClick={handleLogin} className="px-5 py-2 w-25 text-center rounded hover:text-orange-500 bg-gray-400 transition-colors cursor-pointer">
+
+          <li
+            onClick={handleLogin}
+            className={`px-5 py-2 w-25 text-center rounded cursor-pointer transition-colors
+      ${
+        theme === "light"
+          ? "bg-gray-300 hover:bg-gray-400 text-black"
+          : "bg-gray-700 hover:bg-gray-600 text-white"
+      }
+    `}
+          >
             {userState}
           </li>
+
+          <button
+            onClick={toggleTheme}
+            className={`
+      w-12 h-12 flex items-center justify-center cursor-pointer
+      rounded-full shadow-lg border transition-all duration-500 ease-in-out
+      ${
+        theme === "light"
+          ? "bg-gray-100 text-yellow-500 hover:bg-gray-200"
+          : "bg-gray-800 text-white hover:bg-gray-700"
+      }
+    `}
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
         </ul>
       </div>
     </header>

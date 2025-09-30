@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import ShimmerUI from "./ShimmerUI";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import TopResMenu from "./TopResMenu";
 import SecondResMenu from "./SecondResMenu";
+import { UserContext } from "../utils/UserContext";
 
 const Body = () => {
   let [listAllRestaurant, setListAllRestaurant] = useState([]); //original Copy of data for restaurant
@@ -16,6 +17,8 @@ const Body = () => {
   let [secondDetails, setSecondDetails] = useState([]); //second food details in array
   let [secondDetailsTitle, setSecondDetailsTitle] = useState(""); //second food detail title
   let [thirdDetailsTitle, setThirdDetailsTitle] = useState("");
+
+  const { theme, toggleTheme } = useContext(UserContext);
 
   const onlineStatus = useOnlineStatus();
 
@@ -75,15 +78,25 @@ const Body = () => {
   return listAllRestaurant.length === 0 ? (
     <ShimmerUI />
   ) : (
-    <div className="">
-      <div className="flex flex-wrap gap-4 items-center justify-center mt-8">
+    <div
+      className={`${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
+      } min-h-screen transition-all duration-500`}
+    >
+      <div className={`flex flex-wrap gap-4 items-center justify-center`}>
         {/* Search Input */}
         <input
           type="text"
           placeholder="Search your menu"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 w-64"
+          className={`px-4 mt-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-orange-400 w-64 transition-all duration-300
+        ${
+          theme === "light"
+            ? "border-gray-300 focus:border-orange-400 bg-white text-black"
+            : "border-gray-700 bg-gray-800 text-white placeholder-gray-400"
+        }
+      `}
         />
 
         {/* Search Button */}
@@ -94,7 +107,7 @@ const Body = () => {
             );
             setFilteredRestaurant(filteredCard);
           }}
-          className="px-4 py-2 bg-orange-500 text-white rounded-r-md hover:bg-orange-600 transition-colors font-medium"
+          className="px-4 mt-4 py-2 bg-orange-500 text-white rounded-r-md hover:bg-orange-600 transition-colors font-medium"
         >
           Search
         </button>
@@ -107,16 +120,25 @@ const Body = () => {
             );
             setFilteredRestaurant(TopRated);
           }}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors font-medium"
+          className={`${
+            theme === "light"
+              ? "px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+              : "px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600"
+          } transition-colors font-medium mt-4`}
         >
           Top Rated Restaurants
         </button>
       </div>
 
-      <h2 className="text-xl sm:text-2xl md:text-3xl mb-2 ml-4 sm:ml-12 mt-6 font-extrabold text-gray-700">
+      {/* First Section */}
+      <h2
+        className={`text-xl sm:text-2xl md:text-3xl mb-2 ml-4 sm:ml-12 mt-6 font-extrabold transition-colors ${
+          theme === "light" ? "text-gray-700" : "text-white"
+        }`}
+      >
         {topFoodTitle}
       </h2>
-      <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-10 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+      <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-10 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scroll-smooth">
         {topFoods.map((food) => (
           <Link key={food?.id} to={"/"}>
             <TopResMenu foodData={food} />
@@ -124,10 +146,14 @@ const Body = () => {
         ))}
       </div>
 
-      <h2 className="text-lg sm:text-xl md:text-2xl mb-4 ml-4 sm:ml-12 font-extrabold text-gray-700">
+      {/* Second Section */}
+      <h2
+        className={`text-lg sm:text-xl md:text-2xl mb-4 ml-4 sm:ml-12 font-extrabold transition-colors ${
+          theme === "light" ? "text-gray-700" : "text-white"
+        }`}
+      >
         {secondDetailsTitle}
       </h2>
-
       <div className="shadow-md flex gap-6 px-4 sm:px-10 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 scroll-smooth">
         {filteredRestaurant.length === 0 ? (
           <h1 className="text-xl font-semibold text-gray-500 text-center w-full">
@@ -146,7 +172,12 @@ const Body = () => {
         )}
       </div>
 
-      <h2 className="text-lg sm:text-xl md:text-2xl ml-4 sm:ml-12 mt-8 font-extrabold text-gray-700">
+      {/* Third Section */}
+      <h2
+        className={`text-lg sm:text-xl md:text-2xl ml-4 sm:ml-12 mt-8 font-extrabold transition-colors ${
+          theme === "light" ? "text-gray-700" : "text-white"
+        }`}
+      >
         {thirdDetailsTitle}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
@@ -155,17 +186,14 @@ const Body = () => {
             No Restaurant Found
           </h1>
         ) : (
-          filteredRestaurant.map((restaurant, index) => {
-            // console.log(restaurant);
-            return (
-              <Link
-                key={restaurant.info.id}
-                to={`restaurants/${restaurant.info.id}`}
-              >
-                <RestaurantCard resData={restaurant} />
-              </Link>
-            );
-          })
+          filteredRestaurant.map((restaurant) => (
+            <Link
+              key={restaurant.info.id}
+              to={`restaurants/${restaurant.info.id}`}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
+          ))
         )}
       </div>
     </div>
