@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import "./ResMenu.css";
 import { useParams } from "react-router-dom";
-// import { MENU_URL } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 function RestaurantMenu() {
@@ -10,6 +9,9 @@ function RestaurantMenu() {
   const [secondTitleCard, setSecondTitleCard] = useState([]);
   const [thirdTitleCard, setThirdTitleCard] = useState([]);
   const { resid } = useParams();
+  const [showDetailsFirst, setShowDetailsFirst] = useState(false);
+  const [showDetailsSecond, setShowDetailsSecond] = useState(false);
+  const [showDetailsThird, setShowDetailsThird] = useState(false);
 
   const resInfo = useRestaurantMenu(resid);
 
@@ -128,155 +130,186 @@ function RestaurantMenu() {
       </h3>
 
       {/* First Title */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">
+      <div className="mb-0">
+        <h3
+          onClick={() => setShowDetailsFirst(!showDetailsFirst)}
+          className="text-2xl font-bold text-gray-900 bg-gray-100 mb-6 cursor-pointer hover:bg-gray-200 transition-all duration-200 ease-in-out"
+        >
           {firstTitle} ({firstTitleCard.length})
         </h3>
 
-        <div className="space-y-6">
-          {firstTitleCard.slice(0, 5).map((item, index) => {
-            let { name, defaultPrice, description, imageId } = item?.card?.info;
-            let { rating } =
-              item?.card?.info?.ratings?.aggregatedRating || "N/A";
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            showDetailsFirst ? "opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="space-y-6">
+            {firstTitleCard.map((item, index) => {
+              let { name, defaultPrice, description, imageId } =
+                item?.card?.info;
+              let { rating } =
+                item?.card?.info?.ratings?.aggregatedRating || "N/A";
 
-            return (
-              <div
-                key={index}
-                className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
-              >
-                {/* Text Info */}
-                <div className="w-3/4 pr-4">
-                  <h3 className="font-semibold text-gray-900 text-lg">
-                    {name}
-                  </h3>
-                  <h5 className="text-sm font-medium text-gray-700 mt-1">
-                    ₹{defaultPrice / 100}
-                  </h5>
-                  <p className="text-yellow-500 font-medium mt-1">
-                    ⭐ {rating} ({totalRatingsString || 0})
-                  </p>
-                  <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-                    {description}
-                  </p>
-                </div>
+              return (
+                <div
+                  key={index}
+                  className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                >
+                  {/* Text Info */}
+                  <div className="w-3/4 pr-4">
+                    <h3 className="font-semibold text-gray-900 text-lg">
+                      {name}
+                    </h3>
+                    <h5 className="text-sm font-medium text-gray-700 mt-1">
+                      ₹{defaultPrice / 100}
+                    </h5>
+                    <p className="text-yellow-500 font-medium mt-1">
+                      ⭐ {rating} ({totalRatingsString || 0})
+                    </p>
+                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">
+                      {description}
+                    </p>
+                  </div>
 
-                {/* Image + Button */}
-                <div className="flex flex-col items-center w-1/4">
-                  <img
-                    src={imageUrl + imageId}
-                    alt={name}
-                    className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
-                  />
-                  <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                    ADD
-                  </button>
-                  <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  {/* Image + Button */}
+                  <div className="flex flex-col items-center w-1/4">
+                    <img
+                      src={imageUrl + imageId}
+                      alt={name}
+                      className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
+                    />
+                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                      ADD
+                    </button>
+                    <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Second Title */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">
+      <div className="mb-0">
+        <h3
+          onClick={() => setShowDetailsSecond(!showDetailsSecond)}
+          className="text-2xl font-bold text-gray-900 mb-6 bg-gray-100 cursor-pointer hover:bg-gray-300 transition-all duration-200 ease-in-out"
+        >
           {secondTitle} ({secondTitleCard.length})
         </h3>
 
-        <div className="space-y-6">
-          {secondTitleCard.slice(0, 5).map((item, index) => {
-            let { name, defaultPrice, description, imageId } = item?.card?.info;
-            let { rating } =
-              item?.card?.info?.ratings?.aggregatedRating || "N/A";
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            showDetailsSecond ? "opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="space-y-6">
+            {secondTitleCard.map((item, index) => {
+              let { name, defaultPrice, description, imageId } =
+                item?.card?.info;
+              let { rating } =
+                item?.card?.info?.ratings?.aggregatedRating || "N/A";
 
-            return (
-              <div
-                key={index}
-                className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
-              >
-                {/* Text Info */}
-                <div className="w-3/4 pr-4">
-                  <h3 className="font-semibold text-gray-900 text-lg">
-                    {name}
-                  </h3>
-                  <h5 className="text-sm font-medium text-gray-700 mt-1">
-                    ₹{defaultPrice / 100}
-                  </h5>
-                  <p className="text-yellow-500 font-medium mt-1">
-                    ⭐ {rating} ({totalRatingsString || 0})
-                  </p>
-                  <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-                    {description}
-                  </p>
-                </div>
+              return (
+                <div
+                  key={index}
+                  className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                >
+                  {/* Text Info */}
+                  <div className="w-3/4 pr-4">
+                    <h3 className="font-semibold text-gray-900 text-lg">
+                      {name}
+                    </h3>
+                    <h5 className="text-sm font-medium text-gray-700 mt-1">
+                      ₹{defaultPrice / 100}
+                    </h5>
+                    <p className="text-yellow-500 font-medium mt-1">
+                      ⭐ {rating} ({totalRatingsString || 0})
+                    </p>
+                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">
+                      {description}
+                    </p>
+                  </div>
 
-                {/* Image + Button */}
-                <div className="flex flex-col items-center w-1/4">
-                  <img
-                    src={imageUrl + imageId}
-                    alt={name}
-                    className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
-                  />
-                  <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                    ADD
-                  </button>
-                  <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  {/* Image + Button */}
+                  <div className="flex flex-col items-center w-1/4">
+                    <img
+                      src={imageUrl + imageId}
+                      alt={name}
+                      className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
+                    />
+                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                      ADD
+                    </button>
+                    <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Third Title */}
-      <div className="mb-12">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">
+
+      <div className="mb-0">
+        <h3
+          onClick={() => setShowDetailsThird(!showDetailsThird)}
+          className="text-2xl font-bold text-gray-900 mb-6 bg-gray-100 cursor-pointer hover:bg-gray-300 transition-all duration-200 ease-in-out"
+        >
           {thirdTitle} ({thirdTitleCard.length})
         </h3>
 
-        <div className="space-y-6">
-          {thirdTitleCard.slice(0, 5).map((item, index) => {
-            let { name, defaultPrice, description, imageId } = item?.card?.info;
-            let { rating } =
-              item?.card?.info?.ratings?.aggregatedRating || "N/A";
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            showDetailsThird ? "opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="space-y-6">
+            {thirdTitleCard.map((item, index) => {
+              let { name, defaultPrice, description, imageId } =
+                item?.card?.info;
+              let { rating } =
+                item?.card?.info?.ratings?.aggregatedRating || "N/A";
 
-            return (
-              <div
-                key={index}
-                className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
-              >
-                {/* Text Info */}
-                <div className="w-3/4 pr-4">
-                  <h3 className="font-semibold text-gray-900 text-lg">
-                    {name}
-                  </h3>
-                  <h5 className="text-sm font-medium text-gray-700 mt-1">
-                    ₹{defaultPrice / 100}
-                  </h5>
-                  <p className="text-yellow-500 font-medium mt-1">
-                    ⭐ {rating} ({totalRatingsString || 0})
-                  </p>
-                  <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-                    {description}
-                  </p>
-                </div>
+              return (
+                <div
+                  key={index}
+                  className="flex justify-between items-start border-b pb-6 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                >
+                  {/* Text Info */}
+                  <div className="w-3/4 pr-4">
+                    <h3 className="font-semibold text-gray-900 text-lg">
+                      {name}
+                    </h3>
+                    <h5 className="text-sm font-medium text-gray-700 mt-1">
+                      ₹{defaultPrice / 100}
+                    </h5>
+                    <p className="text-yellow-500 font-medium mt-1">
+                      ⭐ {rating} ({totalRatingsString || 0})
+                    </p>
+                    <p className="text-gray-500 text-sm mt-2 line-clamp-2">
+                      {description}
+                    </p>
+                  </div>
 
-                {/* Image + Button */}
-                <div className="flex flex-col items-center w-1/4">
-                  <img
-                    src={imageUrl + imageId}
-                    alt={name}
-                    className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
-                  />
-                  <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                    ADD
-                  </button>
-                  <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  {/* Image + Button */}
+                  <div className="flex flex-col items-center w-1/4">
+                    <img
+                      src={imageUrl + imageId}
+                      alt={name}
+                      className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
+                    />
+                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                      ADD
+                    </button>
+                    <p className="text-xs text-gray-400 mt-1">Customisable</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

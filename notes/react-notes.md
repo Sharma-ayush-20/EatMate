@@ -92,3 +92,113 @@ Example: Webpack ya Vite automatically code splitting + dynamic bundling karte h
 <!-- Higher order components  -->
 
 React me Higher-Order Component (HOC) ek function hota hai jo ek component ko input ke roop me leta hai aur ek naya enhanced component return karta hai. Ye basically code reuse aur logic sharing ke liye use hota hai.
+
+<!-- controlled and unControlled components  -->
+
+controlled components -> means parent components controlled there children components using uplifting the state -> passing the props to there children
+
+unControlled components -> means children components have there own controlled using states
+
+<!-- Uplifting the State (State Uplifting) -->
+
+Jab do ya do se zyada components ko ek hi data (state) chahiye hota hai, toh us state ko unke common parent me upar (uplift) kar dete hain.
+Phir wo parent us data ko props ke through children components ko pass karta hai.
+
+👉 Iska matlab: state ko neeche se upar lekar jana taaki multiple child components ek hi data share kar saken.
+
+import React, { useState } from "react";
+
+// Child 1: Input Component
+<!-- function InputBox({ onInputChange }) {
+  return (
+    <input
+      type="text"
+      placeholder="Type here..."
+      onChange={(e) => onInputChange(e.target.value)}
+    />
+  );
+}
+
+// Child 2: Display Component
+function DisplayText({ text }) {
+  return <h3>You typed: {text}</h3>;
+}
+
+// Parent Component
+function App() {
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <div>
+      <h2>Uplifting State Example</h2>
+      {/* Input se value upar parent me jaayegi */}
+      <InputBox onInputChange={setInputValue} />
+
+      {/* Parent se value dusre child ko milegi */}
+      <DisplayText text={inputValue} />
+    </div>
+  );
+}
+
+export default App; -->
+
+Kaise kaam kar raha hai?
+
+InputBox me user type karega → onInputChange ke through value parent (App) ke state me store ho jaayegi.
+
+DisplayText ko parent ke state ka value milega → wo text show karega.
+
+➡️ Agar state har child me alag rakhta toh dono alag data use karte. Uplifting se common source of truth ban gaya.
+
+<!-- Props Drilling -->
+
+Jab ek data ko bahut neeche ke nested component me bhejna ho, aur beech ke components us data ka use nahi karte, phir bhi unko props ke through pass karna padta hai → is process ko props drilling kehte hain.
+
+👉 Problem ye hai ki beech ke components unnecessary props handle karte hain.
+
+<!-- Example of Props Drilling -->
+
+<!-- import React from "react";
+
+function ChildC({ user }) {
+  return <h3>User: {user}</h3>;
+}
+
+function ChildB({ user }) {
+  // ChildB use nahi kar raha user, sirf aage pass kar raha hai
+  return <ChildC user={user} />;
+}
+
+function ChildA({ user }) {
+  // ChildA bhi use nahi kar raha user
+  return <ChildB user={user} />;
+}
+
+function App() {
+  const user = "Ayush Sharma";
+
+  return (
+    <div>
+      <h2>Props Drilling Example</h2>
+      <ChildA user={user} />
+    </div>
+  );
+}
+
+export default App; -->
+
+App me user data hai.
+
+Wo ChildA → ChildB → ChildC tak pass ho raha hai.
+
+Sirf ChildC ko zarurat hai, lekin beech ke sab components ko props dene pade.
+
+<!-- ➡️ Ye props drilling ka problem hai. -->
+
+Props Drilling Problem ka Solution
+
+Props drilling avoid karne ke liye:
+
+React Context API use karte hain
+
+State Management libraries (Redux, Zustand, Jotai, etc.)
