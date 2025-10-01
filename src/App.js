@@ -9,19 +9,24 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { UserContextProvider } from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   return (
-    <UserContextProvider>
-    <div className="app">
-      <Header />
-      <Outlet /> {/* about and con
+    <Provider store={appStore}>
+      <UserContextProvider>
+        <div className="app">
+          <Header />
+          <Outlet />{" "}
+          {/* about and con
       tact pages are inject in this outlet  */}
-      <Footer />
-    </div>
-    </UserContextProvider>
+          <Footer />
+        </div>
+      </UserContextProvider>
+    </Provider>
   );
 };
 

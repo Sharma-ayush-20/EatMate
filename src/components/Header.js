@@ -2,11 +2,16 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { UserContext } from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
   const { userState, setUserState, theme, toggleTheme } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  //subscribing the store using a selector
+  const cartItems = useSelector((state) => state.cart.items)
+  console.log(cartItems)
 
   const handleLogin = () => {
     setUserState(userState === "Login" ? "Logout" : "Login");
@@ -63,7 +68,7 @@ const Header = () => {
           <li className="hover:text-orange-500 transition-colors">
             <Link to="/contact">Contact us</Link>
           </li>
-          <li className="hover:text-orange-500 transition-colors">Cart</li>
+          <li className="hover:text-orange-500 transition-colors">Cart - {cartItems.length}</li>
 
           {/* Login/Logout Button */}
           <li

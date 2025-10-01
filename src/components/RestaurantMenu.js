@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useContext } from "react";
 import { UserContext } from "../utils/UserContext";
+import { useDispatch } from "react-redux";
+import { addItems } from "../utils/cartSlice";
 
 function RestaurantMenu() {
   const [firstTitleCard, setFirstTitleCard] = useState([]);
@@ -17,6 +19,8 @@ function RestaurantMenu() {
   const { theme } = useContext(UserContext);
 
   const resInfo = useRestaurantMenu(resid);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (resInfo) {
@@ -39,6 +43,11 @@ function RestaurantMenu() {
 
   if (resInfo === null) {
     return <ShimmerUI />;
+  }
+
+  const handleAddItems = () => {
+      //dispatch a action
+      dispatch(addItems("cake"))
   }
 
   const {
@@ -248,7 +257,7 @@ function RestaurantMenu() {
                       alt={name}
                       className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
                     />
-                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                    <button onClick={handleAddItems} className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
                       ADD
                     </button>
                     <p
