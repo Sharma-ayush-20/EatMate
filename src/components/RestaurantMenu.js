@@ -157,7 +157,7 @@ function RestaurantMenu() {
                 theme === "light"
                   ? "bg-white border-gray-200 text-gray-900"
                   : "bg-gray-800 border-gray-700 text-gray-200"
-              } min-w-[250px] border rounded-2xl p-4 shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col gap-2 transition-colors duration-500`}
+              } min-w-[250px] border rounded-2xl p-4 shadow-md hover:shadow-xl cursor-pointer flex flex-col gap-2 transition-colors duration-500`}
             >
               <h6 className="text-orange-500 font-bold text-xs uppercase tracking-wide">
                 {offer.info.offerTag || ""}
@@ -191,7 +191,7 @@ function RestaurantMenu() {
               : "bg-gray-800 text-gray-200 hover:bg-gray-700"
           }`}
         >
-          {firstTitle} ({firstTitleCard.length})
+          {firstTitle} ({firstTitleCard.length || 0})
         </h3>
 
         <div
@@ -276,7 +276,7 @@ function RestaurantMenu() {
               : "bg-gray-800 text-gray-200 hover:bg-gray-700"
           }`}
         >
-          {secondTitle} ({secondTitleCard.length})
+          {secondTitle} ({secondTitleCard.length || 0})
         </h3>
 
         <div
@@ -363,7 +363,7 @@ function RestaurantMenu() {
               : "bg-gray-800 text-gray-200 hover:bg-gray-700"
           }`}
         >
-          {thirdTitle} ({thirdTitleCard.length})
+          {thirdTitle} ({thirdTitleCard.length || 0})
         </h3>
 
         <div

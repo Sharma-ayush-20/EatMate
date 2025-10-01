@@ -75,9 +75,9 @@ const Body = () => {
   //   );
   // }
 
-  return listAllRestaurant.length === 0 ? (
-    <ShimmerUI />
-  ) : (
+  return (!listAllRestaurant || listAllRestaurant.length === 0) ? (
+  <ShimmerUI />
+) : (
     <div
       className={`${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
