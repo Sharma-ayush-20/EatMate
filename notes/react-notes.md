@@ -183,8 +183,8 @@
 
 - function ChildA({ user }) {
 - ChildA bhi use nahi kar raha user
--    return <ChildB user={user} />;
--  }
+- return <ChildB user={user} />;
+- }
 
 - function App() {
 - const user = "Ayush Sharma";
@@ -197,7 +197,7 @@
 - );
 - }
 
-- export default App; 
+- export default App;
 
 - App me user data hai.
 
@@ -205,7 +205,7 @@
 
 - Sirf ChildC ko zarurat hai, lekin beech ke sab components ko props dene pade.
 
-# ➡️ Ye props drilling ka problem hai. 
+# ➡️ Ye props drilling ka problem hai.
 
 - Props Drilling Problem ka Solution
 
@@ -223,3 +223,70 @@
 - Create a Slice (Cart Slice)
 - dispatch(action)
 - selector
+
+# Types of testing for developer
+
+# Unit Testing
+- Kya hai: Code ke chhote-chhote parts (jaise functions ya components) ko alag se test karna.
+- Goal: Ye check karna ki har ek function sahi kaam kar raha hai ya nahi.
+
+# Integration Testing
+- Kya hai: Alag-alag modules ya components saath me kaam kar rahe hai ya nahi, ye test karna.
+- Goal: Ye check karna ki modules properly interact kar rahe hain.
+
+# End to End Testing -> e2e testing
+- Kya hai: Pure application ko user ke perspective se test karna.
+- Goal: Ye check karna ki app start se end tak sahi kaam kar rahi hai.
+- Example:
+- User login karta hai → Dashboard khulta hai → Profile update karta hai → Changes save ho jati hai.
+- Ye sab steps automated script se test kiya ja sakta hai (jaise Cypress, Selenium).
+
+# how we can test
+
+- 1) React Testing Library (wrapper for dom Testing library) use for testing in reactJS
+- builds on top of DOM Testing Library by adding APIs for working with React components.
+- React Testing library behind the scenes use Jest in their process
+
+# Jest
+
+- Kya hai: Ek JavaScript testing framework.
+- Purpose: Code ko test aur verify karne ke liye use hota hai.
+- Use hota hai mainly: React, Node.js, Vanilla JS me.
+- Features:
+- Unit Testing support
+- Mocking (fake functions ya data create karna)
+- Snapshot Testing (UI ke snapshots ko check karna)
+- Code coverage reports
+
+# installation
+
+- npm i -D @testing-library/react
+- npm i -D jest
+
+- for additional configuration
+
+- npm install --save-dev babel-jest @babel/core @babel/preset-env
+- create a babel.config.js
+
+- and write this code 
+- module.exports = {
+-  presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+- };
+
+- but write this code make conflict because parcel uses babel behind the scenes
+- so that when we create babel.config.js and write that configure code
+- we overwrite the parcel -> babel so that is why we have to create .parcelrc
+- and write this code 
+- {
+-   "extends": "@parcel/config-default",
+-   "transformers": {
+-     "*.{js,mjs,jsx,cjs,ts,tsx}": [
+-       "@parcel/transformer-js",
+-       "@parcel/transformer-react-refresh-wrap"
+-     ]
+-   }
+- }
+
+- package.json -> "test": "jest"
+- command run -> npm run test
+
