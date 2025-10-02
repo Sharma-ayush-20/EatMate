@@ -12,6 +12,7 @@ import { UserContextProvider } from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cartpage from "./components/Cartpage";
+import OrderPlacedUI from "./components/OrderPlacedUI";
 
 const About = lazy(() => import("./components/About"));
 
@@ -59,6 +60,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cartpage />
+      }, 
+      {
+        path: '/orderplace',
+        element: <OrderPlacedUI />
       }
     ],
     errorElement: <Error />,
