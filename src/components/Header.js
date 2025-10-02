@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { UserContext } from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import { FaShoppingCart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const onlineStatus = useOnlineStatus();
-  const { userState, setUserState, theme, toggleTheme } = useContext(UserContext);
+  const { userState, setUserState, theme, toggleTheme } =
+    useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   //subscribing the store using a selector
-  const cartItems = useSelector((state) => state.cart.items)
-  console.log(cartItems)
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
 
   const handleLogin = () => {
     setUserState(userState === "Login" ? "Logout" : "Login");
@@ -41,7 +45,11 @@ const Header = () => {
         {/* Navigation */}
         <ul
           className={`flex flex-col sm:flex-row sm:static absolute sm:top-auto sm:left-auto top-full left-0 w-full sm:w-auto 
-          ${theme === "dark" ? "bg-gray-900 text-gray-200" : "bg-white text-gray-700"}
+          ${
+            theme === "dark"
+              ? "bg-gray-900 text-gray-200"
+              : "bg-white text-gray-700"
+          }
           ${menuOpen ? "flex" : "hidden"} sm:flex 
           items-center gap-4 sm:gap-6 font-medium text-lg shadow sm:shadow-none p-4 sm:p-0`}
         >
@@ -68,7 +76,16 @@ const Header = () => {
           <li className="hover:text-orange-500 transition-colors">
             <Link to="/contact">Contact us</Link>
           </li>
-          <li className="hover:text-orange-500 transition-colors">Cart - {cartItems.length}</li>
+          <li onClick={() => navigate('/cart')} className="flex items-center gap-2 hover:text-orange-500 transition-colors cursor-pointer list-none relative">
+            <span>Cart</span>
+            <div className="relative">
+              <FaShoppingCart className="w-6 h-6" />
+              {/* Badge */}
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cartItems.length}
+              </span>
+            </div>
+          </li>
 
           {/* Login/Logout Button */}
           <li

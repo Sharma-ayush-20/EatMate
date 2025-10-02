@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useContext } from "react";
 import { UserContext } from "../utils/UserContext";
-import { useDispatch } from "react-redux";
-import { addItems } from "../utils/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems, removeItems } from "../utils/cartSlice";
 
 function RestaurantMenu() {
   const [firstTitleCard, setFirstTitleCard] = useState([]);
@@ -21,6 +21,7 @@ function RestaurantMenu() {
   const resInfo = useRestaurantMenu(resid);
 
   const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
 
   useEffect(() => {
     if (resInfo) {
@@ -45,10 +46,14 @@ function RestaurantMenu() {
     return <ShimmerUI />;
   }
 
-  const handleAddItems = () => {
-      //dispatch a action
-      dispatch(addItems("cake"))
-  }
+  const handleAddItems = (item) => {
+    //dispatch a action
+    dispatch(addItems(item));
+  };
+
+  const handleRemoveItems = (item) => {
+    dispatch(removeItems(item));
+  };
 
   const {
     name,
@@ -87,7 +92,11 @@ function RestaurantMenu() {
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
 
   return (
-    <div className={`max-w-5xl mx-auto px-4 py-6 ${theme === "dark" ? "bg-gray-900" : ""}`}>
+    <div
+      className={`max-w-5xl mx-auto px-4 py-6 ${
+        theme === "dark" ? "bg-gray-900" : ""
+      }`}
+    >
       {/* Restaurant Info */}
       <div
         className={`${
@@ -257,9 +266,70 @@ function RestaurantMenu() {
                       alt={name}
                       className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
                     />
-                    <button onClick={handleAddItems} className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                      ADD
-                    </button>
+
+                    {cartItems.some(
+                      (cartItem) => cartItem.card.info.id === item.card.info.id
+                    ) ? (
+                      // Counter UI
+                      <div
+                        className={`flex items-center justify-between w-28 px-3 py-2 rounded-lg shadow-md transition-colors duration-300
+                          ${theme === "dark" ? "bg-gray-700" : "bg-gray-100"}`}
+                      >
+                        {/* Remove Button */}
+                        <button
+                          onClick={() => handleRemoveItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg 
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-gray-600 hover:bg-gray-500 text-white"
+                                : "bg-gray-200 hover:bg-gray-300 text-gray-900"
+                            }`}
+                        >
+                          -
+                        </button>
+
+                        {/* Quantity */}
+                        <span
+                          className={`font-semibold text-lg ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}
+                        >
+                          {cartItems.find(
+                            (cartItem) =>
+                              cartItem.card.info.id === item.card.info.id
+                          )?.quantity || 0}
+                        </span>
+
+                        {/* Add Button */}
+                        <button
+                          onClick={() => handleAddItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-green-600 hover:bg-green-500 text-white"
+                                : "bg-green-500 hover:bg-green-400 text-white"
+                            }`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      // ADD Button
+                      <button
+                        onClick={() => handleAddItems(item)}
+                        className={`px-6 py-2 text-sm font-semibold rounded-lg transition-colors duration-200
+                          ${
+                            theme === "dark"
+                              ? "bg-green-600 hover:bg-green-500 text-white"
+                              : "bg-green-500 hover:bg-green-600 text-white"
+                          }`}
+                      >
+                        ADD
+                      </button>
+                    )}
+
                     <p
                       className={`text-xs mt-1 ${
                         theme === "light" ? "text-gray-400" : "text-gray-300"
@@ -344,9 +414,68 @@ function RestaurantMenu() {
                       alt={name}
                       className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
                     />
-                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                      ADD
-                    </button>
+                    {cartItems.some(
+                      (cartItem) => cartItem.card.info.id === item.card.info.id
+                    ) ? (
+                      // Counter UI
+                      <div
+                        className={`flex items-center justify-between w-28 px-3 py-2 rounded-lg shadow-md transition-colors duration-300
+                          ${theme === "dark" ? "bg-gray-700" : "bg-gray-100"}`}
+                      >
+                        {/* Remove Button */}
+                        <button
+                          onClick={() => handleRemoveItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg 
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-gray-600 hover:bg-gray-500 text-white"
+                                : "bg-gray-200 hover:bg-gray-300 text-gray-900"
+                            }`}
+                        >
+                          -
+                        </button>
+
+                        {/* Quantity */}
+                        <span
+                          className={`font-semibold text-lg ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}
+                        >
+                          {cartItems.find(
+                            (cartItem) =>
+                              cartItem.card.info.id === item.card.info.id
+                          )?.quantity || 0}
+                        </span>
+
+                        {/* Add Button */}
+                        <button
+                          onClick={() => handleAddItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-green-600 hover:bg-green-500 text-white"
+                                : "bg-green-500 hover:bg-green-400 text-white"
+                            }`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      // ADD Button
+                      <button
+                        onClick={() => handleAddItems(item)}
+                        className={`px-6 py-2 text-sm font-semibold rounded-lg transition-colors duration-200
+                          ${
+                            theme === "dark"
+                              ? "bg-green-600 hover:bg-green-500 text-white"
+                              : "bg-green-500 hover:bg-green-600 text-white"
+                          }`}
+                      >
+                        ADD
+                      </button>
+                    )}
                     <p
                       className={`text-xs mt-1 ${
                         theme === "light" ? "text-gray-400" : "text-gray-300"
@@ -431,9 +560,68 @@ function RestaurantMenu() {
                       alt={name}
                       className="w-28 h-28 object-cover rounded-xl shadow-md mb-3"
                     />
-                    <button className="px-6 py-2 text-sm font-semibold bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                      ADD
-                    </button>
+                    {cartItems.some(
+                      (cartItem) => cartItem.card.info.id === item.card.info.id
+                    ) ? (
+                      // Counter UI
+                      <div
+                        className={`flex items-center justify-between w-28 px-3 py-2 rounded-lg shadow-md transition-colors duration-300
+                          ${theme === "dark" ? "bg-gray-700" : "bg-gray-100"}`}
+                      >
+                        {/* Remove Button */}
+                        <button
+                          onClick={() => handleRemoveItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg 
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-gray-600 hover:bg-gray-500 text-white"
+                                : "bg-gray-200 hover:bg-gray-300 text-gray-900"
+                            }`}
+                        >
+                          -
+                        </button>
+
+                        {/* Quantity */}
+                        <span
+                          className={`font-semibold text-lg ${
+                            theme === "dark" ? "text-white" : "text-gray-900"
+                          }`}
+                        >
+                          {cartItems.find(
+                            (cartItem) =>
+                              cartItem.card.info.id === item.card.info.id
+                          )?.quantity || 0}
+                        </span>
+
+                        {/* Add Button */}
+                        <button
+                          onClick={() => handleAddItems(item)}
+                          className={`w-8 h-8 flex items-center justify-center rounded-full font-bold text-lg
+                            transition-colors duration-200
+                            ${
+                              theme === "dark"
+                                ? "bg-green-600 hover:bg-green-500 text-white"
+                                : "bg-green-500 hover:bg-green-400 text-white"
+                            }`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      // ADD Button
+                      <button
+                        onClick={() => handleAddItems(item)}
+                        className={`px-6 py-2 text-sm font-semibold rounded-lg transition-colors duration-200
+                          ${
+                            theme === "dark"
+                              ? "bg-green-600 hover:bg-green-500 text-white"
+                              : "bg-green-500 hover:bg-green-600 text-white"
+                          }`}
+                      >
+                        ADD
+                      </button>
+                    )}
                     <p
                       className={`text-xs mt-1 ${
                         theme === "light" ? "text-gray-400" : "text-gray-300"
