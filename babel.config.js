@@ -1,13 +1,9 @@
-// babel.config.js
-module.exports = {
+export default {
   presets: [
     [
       "@babel/preset-env",
-      {
-        targets: {
-          node: "current", // Node ke current version ke liye transpile
-        },
-      },
+      { targets: { node: "current" } }
     ],
+    "@babel/preset-react"
   ],
 };

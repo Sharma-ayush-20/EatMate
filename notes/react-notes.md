@@ -296,4 +296,11 @@
 - then install jsdom library
 - npm install --save-dev jest-environment-jsdom
 
+# writing test cases 
+
+- __tests__ is __ = dundler and in this folder all test case are written
+- install this too -> npm install --save-dev @babel/preset-react
+- test("description of test", () => {//test cases})
+
+
 
