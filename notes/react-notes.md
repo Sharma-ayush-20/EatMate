@@ -290,3 +290,10 @@
 - package.json -> "test": "jest"
 - command run -> npm run test
 
+- writing jest configuration
+- npm init jest@latest
+- and by running this command some configuration Q&A happen
+- then install jsdom library
+- npm install --save-dev jest-environment-jsdom
+
+
