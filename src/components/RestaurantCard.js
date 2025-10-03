@@ -3,6 +3,7 @@ import { IMAGE_URL } from "../utils/constants";
 import { UserContext } from "../utils/UserContext";
 
 const RestaurantCard = ({ resData }) => {
+  console.log(resData)
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     resData?.info;
   const { deliveryTime } = resData?.info?.sla;
