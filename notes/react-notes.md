@@ -301,6 +301,12 @@
 - __tests__ is __ = dundler and in this folder all test case are written
 - install this too -> npm install --save-dev @babel/preset-react
 - test("description of test", () => {//test cases})
+- for running this its show an error so we have to install and import
+- import '@testing-library/jest-dom';
+- in one file we write different test cases
+- and we also use to group all this test cases -> describe("main description", ()=>{//all Test cases})
+- we also use test and it
+
 
 
 
