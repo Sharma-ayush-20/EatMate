@@ -305,7 +305,7 @@
 - import '@testing-library/jest-dom';
 - in one file we write different test cases
 - and we also use to group all this test cases -> describe("main description", ()=>{//all Test cases})
-- we also use test and it
+- we also use (test) and (it)
 
 
 
