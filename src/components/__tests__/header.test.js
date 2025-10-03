@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { UserContextProvider } from "../../utils/UserContext";
@@ -50,5 +50,22 @@ describe("All Test cases for header components", () => {
 
     const AboutUs = screen.getByText("About us");
     expect(AboutUs).toBeInTheDocument();
+  });
+
+  it("Should change login to logout when button Clicked", () => {
+    render(
+      <BrowserRouter>
+        <Provider store={appStore}>
+          <UserContextProvider>
+            <Header />
+          </UserContextProvider>
+        </Provider>
+      </BrowserRouter>
+    );
+
+    const LoginButton = screen.getByText("Login")
+    fireEvent.click(LoginButton);
+    const LogoutButton = screen.getByText("Logout");
+    expect(LogoutButton).toBeInTheDocument();
   });
 });
