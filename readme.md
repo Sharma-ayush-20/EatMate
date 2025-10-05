@@ -6,10 +6,12 @@ EatMate is a fully functional **Swiggy-like food ordering web app** built with *
 
 ## 🔥 Features
 
-- Browse restaurants and dishes (Pizza, Burger, etc.)  
+- Browse restaurants and dishes (Pizza, Burger, etc.)
+- Online/Offline status** indicator for users 
 - View **dish details** on a separate page  
-- **Cart functionality** with item selection and order placement  
-- **Light mode & Dark mode** toggle  
+- Cart functionality** with item selection and order placement  
+- Light mode & Dark mode** toggle
+- Online/Offline status** indicator for users 
 - Responsive UI for **desktop and mobile**  
 - Uses **live Swiggy API** for real data  
 - Optimized with **Lazy Loading** and **React Suspense**  
@@ -54,6 +56,7 @@ This project uses Parcel for bundling.
 Tailwind CSS classes are used for styling with responsiveness.
 Both functional and class-based components are used.
 Lazy loading is applied for components to improve performance.
+
 
 
 
