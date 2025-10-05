@@ -31,10 +31,11 @@ const Body = () => {
   // using browser extension but now this not working
 
   const fetchData = async () => {
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1090805&lng=72.8720171&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    // let data = await fetch(
+    //   // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1090805&lng=72.8720171&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    // );
 
+    const data = await fetch("http://localhost:5000/api/swiggy");
     const json = await data.json();
 
     // console.log(json);
