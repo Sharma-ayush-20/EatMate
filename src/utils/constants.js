@@ -6,4 +6,4 @@ export const IMAGE_URL =
 
 export const MENU_URL =
   // "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.1090805&lng=72.8720171&restaurantId=";
-  "http://localhost:5000/api/menu?id="
+  "https://eatmate-2.onrender.com/api/menu?id="
