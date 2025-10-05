@@ -40,3 +40,4 @@ yarn-error.log*
 .parcel-cache   
 /backend/node_modules
 .vercel
+

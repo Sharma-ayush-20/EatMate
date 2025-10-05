@@ -307,6 +307,10 @@
 - and we also use to group all this test cases -> describe("main description", ()=>{//all Test cases})
 - we also use (test) and (it)
 
+# integration testing
+- test the flow of different components
+- when we use "watch-test": "jest --watch" then we don't have to run command again & again
+
 
 
 
