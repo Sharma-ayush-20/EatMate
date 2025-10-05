@@ -46,7 +46,7 @@ npm start
 npm run test
 
 ## Live Demo
-
+https://eat-mate-seven.vercel.app
 
 ## Notes
 
@@ -54,6 +54,7 @@ This project uses Parcel for bundling.
 Tailwind CSS classes are used for styling with responsiveness.
 Both functional and class-based components are used.
 Lazy loading is applied for components to improve performance.
+
 
 
 
